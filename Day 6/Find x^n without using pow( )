@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+long long n, x, result = 1;
+
+cout << "ENTER BASE (x) : ";
+cin >> x;
+cout << "ENTER THE EXPONENT (n) : ";
+cin >> n;
+
+for (int i=1; i<=n; i++ ) {
+    result = result * x;
+}
+cout << x << "^" << n << " = " << result << endl;
+
+    return 0;
+}
