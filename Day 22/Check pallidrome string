@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    cout << "ENTER A STRING : ";
+    cin >> s;
+
+    int left = 0, right = s.length() - 1;
+    bool isPalin = true;
+
+    while (left < right) {
+        if (s[left] != s[right]) {
+            isPalin = false;
+            break;
+        }
+        left++;
+        right--;
+    }
+
+    if (isPalin)
+        cout << s << " IS A PALINDROME" << endl;
+    else
+        cout << s << " IS NOT A PALINDROME" << endl;
+
+    return 0;
+}
