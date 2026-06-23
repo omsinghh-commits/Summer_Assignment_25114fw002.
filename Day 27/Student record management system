@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Student {
+    int id;
+    string name, branch, year;
+    float cgpa;
+};
+
+vector<Student> students;
+int nextId = 1;
+
+void addStudent() {
+    Student s;
+    s.id = nextId++;
+    cout << "Name: "; cin.ignore(); getline(cin, s.name);
+    cout << "Branch: "; getline(cin, s.branch);
+    cout << "Year: "; getline(cin, s.year);
+    cout << "CGPA: "; cin >> s.cgpa;
+    students.push_back(s);
+    cout << "Student added with ID " << s.id << "\n";
+}
+
+void displayAll() {
+    if (students.empty()) { cout << "No records found.\n"; return; }
+    cout << "\n--- All Students ---\n";
+    for (auto& s : students)
+        cout << "ID: " << s.id << " | " << s.name << " | " << s.branch
+             << " | " << s.year << " | CGPA: " << s.cgpa << "\n";
+}
+
+void searchStudent() {
+    string name;
+    cout << "Enter name to search: "; cin.ignore(); getline(cin, name);
+    bool found = false;
+    for (auto& s : students) {
+        if (s.name == name) {
+            cout << "Found -> ID: " << s.id << " | " << s.branch
+                 << " | " << s.year << " | CGPA: " << s.cgpa << "\n";
+            found = true;
+        }
+    }
+    if (!found) cout << "Student not found.\n";
+}
+
+void updateStudent() {
+    int id;
+    cout << "Enter student ID to update: "; cin >> id;
+    for (auto& s : students) {
+        if (s.id == id) {
+            cout << "New Branch: "; cin.ignore(); getline(cin, s.branch);
+            cout << "New Year: "; getline(cin, s.year);
+            cout << "New CGPA: "; cin >> s.cgpa;
+            cout << "Record updated.\n";
+            return;
+        }
+    }
+    cout << "ID not found.\n";
+}
+
+void deleteStudent() {
+    int id;
+    cout << "Enter student ID to delete: "; cin >> id;
+    for (auto it = students.begin(); it != students.end(); ++it) {
+        if (it->id == id) {
+            students.erase(it);
+            cout << "Record deleted.\n";
+            return;
+        }
+    }
+    cout << "ID not found.\n";
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n=== Student Record System ===\n";
+        cout << "1. Add  2. Display  3. Search  4. Update  5. Delete  0. Exit\n";
+        cout << "Choice: "; cin >> choice;
+        if (choice == 1) addStudent();
+        else if (choice == 2) displayAll();
+        else if (choice == 3) searchStudent();
+        else if (choice == 4) updateStudent();
+        else if (choice == 5) deleteStudent();
+    } while (choice != 0);
+    return 0;
+}
