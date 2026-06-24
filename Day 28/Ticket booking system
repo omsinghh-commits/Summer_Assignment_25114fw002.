@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int totalSeats = 10;
+    int choice, seats;
+
+    do {
+        cout << "\n===== TICKET BOOKING SYSTEM =====\n";
+        cout << "1. Book Ticket\n";
+        cout << "2. Check Available Seats\n";
+        cout << "3. Exit\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cout << "Enter Number of Seats to Book: ";
+                cin >> seats;
+
+                if(seats <= totalSeats) {
+                    totalSeats -= seats;
+                    cout << "Ticket Booked Successfully!\n";
+                } else {
+                    cout << "Seats Not Available!\n";
+                }
+                break;
+
+            case 2:
+                cout << "Available Seats: " << totalSeats << endl;
+                break;
+
+            case 3:
+                cout << "Thank You!\n";
+                break;
+
+            default:
+                cout << "Invalid Choice!\n";
+        }
+
+    } while(choice != 3);
+
+    return 0;
+}
